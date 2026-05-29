@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+/* =========================
+   Marquee animation
+========================= */
+@keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+.marquee {
+    display: inline-block;
+    animation: marquee 30s linear infinite;
+}
+
+/* =========================
+   Background login & register + overlay
+========================= */
+.bg-login,
+.bg-register {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* background image */
+.bg-login {
+    background-image: url('/build/images/Background_Login.png');
+}
+
+.bg-register {
+    background-image: url('/build/images/Background_Register.png');
+}
+
+/* overlay gelap */
+.bg-login::before,
+.bg-register::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    z-index: 1;
+}
+
+/* semua konten di atas overlay */
+.bg-login > *,
+.bg-register > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================
+   Card / Form
+========================= */
+.login-form-container {
+    backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 1rem;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+}
+
+/* =========================
+   CARD LOGIN HIJAU
+========================= */
+.login-card-green {
+    background-color: rgba(220, 252, 231, 0.95);
+    border: 1px solid rgba(34, 197, 94, 0.45);
+}
+
+.login-card-green h1 {
+    color: #0b6623;
+}
+
+.login-card-green label {
+    color: #064e3b;
+}
+
+/* =========================
+   Input interaction
+========================= */
+.login-form-container input,
+.login-form-container select {
+    transition: all 0.25s ease;
+    border: 1px solid #d1d5db;
+    background-color: #f9fafb;
+}
+
+.login-form-container input:hover,
+.login-form-container select:hover {
+    border-color: #3b82f6;
+}
+
+.login-form-container input:focus,
+.login-form-container select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+    background-color: #ffffff;
+}
+
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 640px) {
+    .login-form-container {
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    .login-form-container h1 {
+        font-size: 1.25rem;
+        text-align: center;
+    }
+
+    .login-form-container button {
+        width: 100%;
+        font-size: 0.95rem;
+    }
+}

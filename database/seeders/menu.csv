@@ -1,0 +1,142 @@
+kode_menu,nama_menu,gram_urt_standart,kkal_urt,karbo_per_g,protein_per_g,lemak_per_g
+k1,Nasi,100,175,0.5,0.04,0
+k2,Nasi Tim,200,175,0.25,0.02,0
+k3,Bubur beras,400,175,0.125,0.01,0
+k4,Nasi Jagung,100,175,0.5,0.04,0
+k5,Kentang,200,175,0.25,0.02,0
+k6,Singkong,100,175,0.5,0.04,0
+k7,Talas,200,175,0.25,0.02,0
+k8,Ubi,150,175,0.333333333,0.026666667,0
+k9,Biskuit meja,50,175,1,0.08,0
+k10,Krakers,50,175,1,0.08,0
+k11,Roti putih,80,175,0.625,0.05,0
+k12,Mi kering,50,175,1,0.08,0
+k13,Mi basah,100,175,0.5,0.04,0
+k14,Bihun,50,175,1,0.08,0
+k15,Tepung beras,50,175,1,0.08,0
+k16,Maizena,40,175,1.25,0.1,0
+k17,Tepung hunkwee,40,175,1.25,0.1,0
+k18,Tepung sagu,40,175,1.25,0.1,0
+k19,Tepung singkong,40,175,1.25,0.1,0
+k20,Tepung terigu,50,175,1,0.08,0
+k21,Havermout,50,175,1,0.08,0
+PHR1,Ayam tanpa kulit,40,50,0,0.175,0.05
+PHR2,Ikan segar,50,50,0,0.14,0.04
+PHR3,Ikan kering,15,50,0,0.466666667,0.133333333
+PHS1,Bakso,100,75,0,0.07,0.05
+PHS2,Daging kambing,40,75,0,0.175,0.125
+PHS3,Daging sapi,35,75,0,0.2,0.142857143
+PHS4,Hati ayam,30,75,0,0.233333333,0.166666667
+PHS5,Otak,65,75,0,0.107692308,0.076923077
+PHS6,Babat,40,75,0,0.175,0.125
+PHS7,Usus sapi,75,75,0,0.093333333,0.066666667
+PHS8,Telur ayam,50,75,0,0.14,0.1
+PHS9,Telur puyuh,60,75,0,0.116666667,0.083333333
+PHS10,Udang,50,75,0,0.14,0.1
+PHS11,Kepiting,50,75,0,0.14,0.1
+PHS12,Kerang,90,75,0,0.077777778,0.055555556
+PST1,Bebek,45,150,0,0.155555556,0.288888889
+PST2,Corned beef,45,150,0,0.155555556,0.288888889
+PST3,Ayam dan kulit,55,150,0,0.127272727,0.236363636
+PST4,Daging babi,50,150,0,0.14,0.26
+PST5,Sosis,50,150,0,0.14,0.26
+PST6,Kuning telur,45,150,0,0.155555556,0.288888889
+PN1,Tempe,50,80,0.16,0.12,0.06
+PN2,Tahu,100,80,0.08,0.06,0.03
+PN3,Oncom,50,80,0.16,0.12,0.06
+PN4,Kacang Hijau,25,80,0.32,0.24,0.12
+PN5,Kacang Tolo,25,80,0.32,0.24,0.12
+PN6,Kacang kedelai,25,80,0.32,0.24,0.12
+PN7,Kacang merah,25,80,0.32,0.24,0.12
+PN8,Kacang Tanah,20,80,0.4,0.3,0.15
+S1,Bayam,100,50,0.1,0.03,0
+S2,Bayam merah,100,50,0.1,0.03,0
+S3,Biet,100,50,0.1,0.03,0
+S4,Buncis,100,50,0.1,0.03,0
+S5,Daun beluntas,100,50,0.1,0.03,0
+S6,Daun ketela rambat,100,50,0.1,0.03,0
+S7,Daun kecipir,100,50,0.1,0.03,0
+S8,Daun blinjo,100,50,0.1,0.03,0
+S9,Jagung muda,100,50,0.1,0.03,0
+S10,Jantung pisang,100,50,0.1,0.03,0
+S11,Genjer,100,50,0.1,0.03,0
+S12,Kacang panjang,100,50,0.1,0.03,0
+S13,Kacang kapri,100,50,0.1,0.03,0
+S14,Katuk,100,50,0.1,0.03,0
+S15,Kucai,100,50,0.1,0.03,0
+S16,Labu siam,100,50,0.1,0.03,0
+S17,Daun bawang,100,50,0.1,0.03,0
+S18,Jamur segar,100,50,0.1,0.03,0
+S19,Oyong,100,50,0.1,0.03,0
+S20,Kangkung,100,50,0.1,0.03,0
+S21,Ketimun,100,50,0.1,0.03,0
+S22,Tomat,100,50,0.1,0.03,0
+S23,Kubis(Kol),100,50,0.1,0.03,0
+S24,Caisim,100,50,0.1,0.03,0
+S25,Taoge,100,50,0.1,0.03,0
+S26,Kembang kol,100,50,0.1,0.03,0
+S27,Brokoli,100,50,0.1,0.03,0
+S28,Labu air,100,50,0.1,0.03,0
+S29,Lobak,100,50,0.1,0.03,0
+S30,Pepaya muda,100,50,0.1,0.03,0
+S31,Rebung,100,50,0.1,0.03,0
+S32,Sawi,100,50,0.1,0.03,0
+S33,Selada,100,50,0.1,0.03,0
+S34,Terong,100,50,0.1,0.03,0
+S35,Daun pakis,100,50,0.1,0.03,0
+S36,Daun singkong,100,50,0.1,0.03,0
+S37,Daun pepaya,100,50,0.1,0.03,0
+S38,Daun talas,100,50,0.1,0.03,0
+S39,Kluwih,100,50,0.1,0.03,0
+S40,Labu puih,100,50,0.1,0.03,0
+S41,Nangka muda,100,50,0.1,0.03,0
+S42,Pare,100,50,0.1,0.03,0
+S43,Wortel,100,50,0.1,0.03,0
+BG1,Mangga,50,50,0.24,0,0
+BG2,Nangka masak,50,50,0.24,0,0
+BG3,Rambutan,75,50,0.16,0,0
+BG4,Sirsak,50,50,0.24,0,0
+BG5,Nanas,75,50,0.16,0,0
+BG6,Anggur,75,50,0.16,0,0
+BG7,Duku,75,50,0.16,0,0
+BG8,Durian,50,50,0.24,0,0
+BG9,Jeruk manis,100,50,0.12,0,0
+BG10,Jeruk keprok,100,50,0.12,0,0
+BG11,Jambu air,100,50,0.12,0,0
+BG12,Jambu biji,100,50,0.12,0,0
+BG13,Jambu bol,75,50,0.16,0,0
+BG14,Kedondong,100,50,0.12,0,0
+BG15,Pepaya,100,50,0.12,0,0
+BG16,Salak,75,50,0.16,0,0
+BG17,Sawo,50,50,0.24,0,0
+BG18,Semangka,150,50,0.08,0,0
+BG19,Melon,200,50,0.06,0,0
+BG20,Blewah,100,50,0.12,0,0
+BG21,Apel,75,50,0.16,0,0
+BG22,Alpukat,50,50,0.24,0,0
+BG23,Belimbing,125,50,0.096,0,0
+BG24,Pear,75,50,0.16,0,0
+BG25,Pisang ambon,50,50,0.24,0,0
+BG26,Pisang kepok,50,50,0.24,0,0
+BG27,Tomat masak,125,50,0.096,0,0
+BG28,Madu,15,50,0.8,0,0
+BG29,Gula,10,50,1.2,0,0
+STL1,Susu skim cair,200,70,0.055,0.035,0
+STL2,Tepung susu skim,20,70,0.55,0.35,0
+STL3,Yogurt non fat,120,70,0.091666667,0.058333333,0
+SRL1,Keju,35,125,0.285714286,0.2,0.171428571
+SRL2,Susu kambing,165,125,0.060606061,0.042424242,0.036363636
+SRL3,Susu sapi,200,125,0.05,0.035,0.03
+SRL4,Yoghurt (whole),200,125,0.05,0.035,0.03
+SRL5,Sari kedelai,25,125,0.4,0.28,0.24
+SRL6,Bubuk susu kedelai,200,125,0.05,0.035,0.03
+STIL1,Tepung susu full cream,30,150,0.333333333,0.233333333,0.333333333
+M1,Minyak kelapa,5,45,0,0,1
+M2,Minyak ikan,5,45,0,0,1
+M3,Minyak kelapa sawit,5,45,0,0,1
+M4,Mentega,5,45,0,0,1
+M5,Margarin,5,45,0,0,1
+M6,Kelapa parut,25,45,0,0,0.2
+M7,Santan encer,40,45,0,0,0.125
+M8,Santan kental,15,45,0,0,0.333333333
+M9,Lemak sapi/gajih,5,45,0,0,1
