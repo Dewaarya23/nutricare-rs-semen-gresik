@@ -28,6 +28,9 @@ class User extends Authenticatable
         'ada_riwayat',
         'defisit',
         'activity_factor',
+        'tekanan_darah_sistolik',
+        'glukosa_darah',
+        'kolesterol',
     ];
 
     protected $hidden = [

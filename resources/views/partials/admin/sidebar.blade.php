@@ -78,7 +78,11 @@
             request()->routeIs('admin.menu.*') ||
             request()->routeIs('admin.patients.*') ||
             request()->routeIs('admin.diseases.*') ||
-            request()->routeIs('admin.articles.*')
+            request()->routeIs('admin.articles.*') ||
+            request()->routeIs('admin.decision-tree.*') ||
+            request()->routeIs('admin.rule-based.*') ||
+            request()->routeIs('admin.meal-plan.*') ||
+            request()->routeIs('admin.meal-plan-portion.*')
         ) ? 'true' : 'false' }} }">
 
             <button @click="open = !open"
@@ -146,6 +150,48 @@
         </svg>
 
         Master Penyakit
+    </a>
+
+    {{-- MASTER DECISION TREE --}}
+    <a href="{{ route('admin.decision-tree.index') }}"
+       class="flex items-center gap-2 px-4 py-2 rounded
+    {{ request()->routeIs('admin.decision-tree.*') ? 'bg-green-200 font-semibold' : 'hover:bg-green-100' }}">
+
+    <svg class="w-4 h-4 text-green-700" fill="none" stroke="currentColor" stroke-width="2"
+         viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 3v6m0 0l-4 4m4-4l4 4M6 21h4m4 0h4M6 21v-4a2 2 0 012-2h0M18 21v-4a2 2 0 00-2-2h0"/>
+    </svg>
+
+    Decision Tree
+</a>
+
+    {{-- MASTER RULE-BASED --}}
+    <a href="{{ route('admin.rule-based.index') }}"
+   class="flex items-center gap-2 px-4 py-2 rounded
+   {{ request()->routeIs('admin.rule-based.*') ? 'bg-green-200 font-semibold' : 'hover:bg-green-100' }}">
+
+    <svg class="w-4 h-4 text-green-700" fill="none" stroke="currentColor" stroke-width="2"
+         viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M9 12h6m-6 4h6M9 8h6M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+    </svg>
+
+    Rule-Based
+</a>
+
+    {{-- MASTER MEAL PLAN & TABEL PEMBAGIAN PORSI --}}
+    <a href="{{ route('admin.meal-plan.index') }}"
+    class="flex items-center gap-2 px-4 py-2 rounded
+    {{ (request()->routeIs('admin.meal-plan.*') || request()->routeIs('admin.meal-plan-portion.*')) ? 'bg-green-200 font-semibold' : 'hover:bg-green-100' }}">
+
+        <svg class="w-4 h-4 text-green-700" fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M4 6h16M4 10h16M4 14h10M4 18h6"/>
+        </svg>
+
+        Tabel Pembagian Porsi
     </a>
 
     {{-- ENTRY ARTIKEL --}}

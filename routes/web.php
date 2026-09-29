@@ -306,6 +306,81 @@ Route::delete('/diseases/{id}', [DiseaseController::class, 'destroy'])
     ->name('diseases.destroy');
 
 /* =============================================
+| MASTER DECISION TREE
+============================================== */
+Route::get('/decision-tree', [\App\Http\Controllers\Admin\RuleDecisionTreeController::class, 'index'])
+    ->name('decision-tree.index');
+
+Route::get('/decision-tree/create', [\App\Http\Controllers\Admin\RuleDecisionTreeController::class, 'create'])
+    ->name('decision-tree.create');
+
+Route::post('/decision-tree', [\App\Http\Controllers\Admin\RuleDecisionTreeController::class, 'store'])
+    ->name('decision-tree.store');
+
+Route::get('/decision-tree/{ruleGroup}/edit', [\App\Http\Controllers\Admin\RuleDecisionTreeController::class, 'edit'])
+    ->name('decision-tree.edit');
+
+Route::put('/decision-tree/{ruleGroup}', [\App\Http\Controllers\Admin\RuleDecisionTreeController::class, 'update'])
+    ->name('decision-tree.update');
+
+Route::delete('/decision-tree/{ruleGroup}', [\App\Http\Controllers\Admin\RuleDecisionTreeController::class, 'destroy'])
+    ->name('decision-tree.destroy');
+
+/* =============================================
+| MASTER RULE-BASED
+============================================== */
+Route::get('/rule-based', [\App\Http\Controllers\Admin\RuleRuleBasedController::class, 'index'])
+    ->name('rule-based.index');
+
+Route::get('/rule-based/create', [\App\Http\Controllers\Admin\RuleRuleBasedController::class, 'create'])
+    ->name('rule-based.create');
+
+Route::post('/rule-based', [\App\Http\Controllers\Admin\RuleRuleBasedController::class, 'store'])
+    ->name('rule-based.store');
+
+Route::get('/rule-based/{id}/edit', [\App\Http\Controllers\Admin\RuleRuleBasedController::class, 'edit'])
+    ->name('rule-based.edit');
+
+Route::put('/rule-based/{id}', [\App\Http\Controllers\Admin\RuleRuleBasedController::class, 'update'])
+    ->name('rule-based.update');
+
+Route::delete('/rule-based/{id}', [\App\Http\Controllers\Admin\RuleRuleBasedController::class, 'destroy'])
+    ->name('rule-based.destroy');
+
+/* =============================================
+| MASTER MEAL PLAN & TABEL PEMBAGIAN PORSI
+============================================== */
+Route::get('/meal-plan', [\App\Http\Controllers\Admin\MealPlanController::class, 'index'])
+    ->name('meal-plan.index');
+
+Route::get('/meal-plan/create', [\App\Http\Controllers\Admin\MealPlanController::class, 'create'])
+    ->name('meal-plan.create');
+
+Route::post('/meal-plan', [\App\Http\Controllers\Admin\MealPlanController::class, 'store'])
+    ->name('meal-plan.store');
+
+Route::get('/meal-plan/{id}/edit', [\App\Http\Controllers\Admin\MealPlanController::class, 'edit'])
+    ->name('meal-plan.edit');
+
+Route::put('/meal-plan/{id}', [\App\Http\Controllers\Admin\MealPlanController::class, 'update'])
+    ->name('meal-plan.update');
+
+Route::delete('/meal-plan/{id}', [\App\Http\Controllers\Admin\MealPlanController::class, 'destroy'])
+    ->name('meal-plan.destroy');
+
+Route::get('/meal-plan/{mealPlanId}/portions', [\App\Http\Controllers\Admin\MealPlanPortionController::class, 'index'])
+    ->name('meal-plan-portion.index');
+
+Route::post('/meal-plan/{mealPlanId}/portions', [\App\Http\Controllers\Admin\MealPlanPortionController::class, 'store'])
+    ->name('meal-plan-portion.store');
+
+Route::put('/meal-plan/{mealPlanId}/portions/{portionId}', [\App\Http\Controllers\Admin\MealPlanPortionController::class, 'update'])
+    ->name('meal-plan-portion.update');
+
+Route::delete('/meal-plan/{mealPlanId}/portions/{portionId}', [\App\Http\Controllers\Admin\MealPlanPortionController::class, 'destroy'])
+    ->name('meal-plan-portion.destroy');
+
+/* =============================================
 | ENTRY ARTIKEL
 ============================================== */
     Route::get('/articles', [\App\Http\Controllers\Admin\ArticleController::class, 'index'])

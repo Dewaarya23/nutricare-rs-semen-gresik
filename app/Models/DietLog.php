@@ -9,8 +9,10 @@ class DietLog extends Model
     protected $fillable = [
         'user_id',
         'tujuan_diet',
+        'kategori_diet',
         'activity_factor',
         'target_kkal',
+        'meal_plan_id',
         'tanggal_mulai',
         'tanggal_selesai'
     ];
@@ -23,5 +25,10 @@ class DietLog extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function mealPlan()
+    {
+        return $this->belongsTo(MealPlan::class);
     }
 }
