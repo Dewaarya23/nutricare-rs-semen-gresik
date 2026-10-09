@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Monitoring;
 use App\Models\DietLog;
 use App\Models\Article;
+use App\Services\DietRecommendationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -136,12 +137,19 @@ class DashboardController extends Controller
 
         $latestArticle = Article::orderByDesc('tanggal')->first();
 
+        $rekomendasi = ['status' => 'data_klinis_kosong'];
+
+        if ($user && $user->berat_badan && $user->tinggi_badan) {
+            $rekomendasi = app(DietRecommendationService::class)
+                ->forUser($user, $targetKkal, $usia);
+        }
+
         return view('user.dashboard', compact(
             'imt','bbi','data','from','to',
             'targetKkal','targetProtein','targetLemak','targetKarbo',
             'dietLogs','todayKkal','overLimit',
             'imtKategori','imtColor',
-            'latestArticle'
+            'latestArticle','rekomendasi'
         ));
     }
 

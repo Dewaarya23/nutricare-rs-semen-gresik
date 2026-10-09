@@ -26,6 +26,27 @@
                    class="w-full border px-3 py-2 rounded">
         </div>
 
+        <div class="mb-3">
+            <label class="block text-sm">Tekanan Darah Sistolik (mmHg)</label>
+            <input type="number" name="tekanan_darah_sistolik"
+                   value="{{ old('tekanan_darah_sistolik', $user->tekanan_darah_sistolik) }}"
+                   class="w-full border px-3 py-2 rounded">
+        </div>
+
+        <div class="mb-3">
+            <label class="block text-sm">Glukosa Darah (mg/dL)</label>
+            <input type="number" name="glukosa_darah"
+                   value="{{ old('glukosa_darah', $user->glukosa_darah) }}"
+                   class="w-full border px-3 py-2 rounded">
+        </div>
+
+        <div class="mb-3">
+            <label class="block text-sm">Kolesterol (mg/dL)</label>
+            <input type="number" name="kolesterol"
+                   value="{{ old('kolesterol', $user->kolesterol) }}"
+                   class="w-full border px-3 py-2 rounded">
+        </div>
+
             <div class="mb-3">
                 <label class="block text-sm">Jenis Kelamin</label>
                 <select name="jenis_kelamin"

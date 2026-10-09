@@ -173,6 +173,133 @@
 </div>
 @endif
 
+    {{-- DIET, PANTANGAN, PORSI & MENU --}}
+@if(($rekomendasi['status'] ?? null) === 'ok')
+
+    <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6 shadow">
+        <h2 class="text-lg font-bold text-gray-800 mb-4">
+            Diet &amp; Alert Pantangan Makanan
+        </h2>
+
+        <div class="flex flex-col md:flex-row gap-6 md:items-start">
+
+            <div>
+                <span class="inline-block bg-red-100 text-red-700 font-semibold px-4 py-2 rounded-lg">
+                    {{ $rekomendasi['kategori_diet'] }}
+                </span>
+            </div>
+
+            @if($rekomendasi['rule'])
+            <div class="flex-1 grid md:grid-cols-2 gap-4 text-sm">
+                <div>
+                    <p class="font-semibold text-green-700 mb-1">Dianjurkan:</p>
+                    <p class="text-gray-700">{{ $rekomendasi['rule']->anjuran }}</p>
+                </div>
+                <div>
+                    <p class="font-semibold text-red-700 mb-1">Dibatasi:</p>
+                    <p class="text-gray-700">{{ $rekomendasi['rule']->pantangan }}</p>
+                </div>
+            </div>
+            @else
+            <p class="flex-1 text-sm text-gray-500">
+                Aturan rekomendasi untuk kombinasi diet ini belum tersedia.
+                Silakan hubungi admin gizi.
+            </p>
+            @endif
+        </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+
+        <div class="bg-white p-6 rounded-xl shadow border">
+            <h2 class="text-lg font-bold text-gray-800 mb-1">
+                Tabel Pembagian Porsi
+            </h2>
+            <p class="text-sm text-gray-500 mb-4">
+                @if($rekomendasi['meal_plan'])
+                    {{ $rekomendasi['meal_plan']->nama }}
+                    ({{ number_format($rekomendasi['meal_plan']->target_energi, 0) }} Kkal)
+                @else
+                    Meal plan belum tersedia
+                @endif
+            </p>
+
+            @if($rekomendasi['portions']->isNotEmpty())
+            <table class="min-w-full text-sm border border-collapse">
+                <thead class="bg-green-700 text-white">
+                    <tr>
+                        <th class="p-2 border text-left">Jenis</th>
+                        <th class="p-2 border">Penukar</th>
+                        <th class="p-2 border">Kalori</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($rekomendasi['portions'] as $portion)
+                    <tr>
+                        <td class="p-2 border">{{ $portion->nama_jenis }}</td>
+                        <td class="p-2 border text-center">{{ $portion->penukar }}</td>
+                        <td class="p-2 border text-center">{{ $portion->kalori }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+                <tfoot class="bg-gray-100 font-semibold">
+                    <tr>
+                        <td class="p-2 border">Total</td>
+                        <td class="p-2 border text-center">{{ $rekomendasi['portions']->sum('penukar') }}</td>
+                        <td class="p-2 border text-center">{{ $rekomendasi['portions']->sum('kalori') }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+            @else
+            <p class="text-sm text-gray-500">
+                Tabel pembagian porsi untuk meal plan ini belum diisi oleh admin gizi.
+            </p>
+            @endif
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow border">
+            <h2 class="text-lg font-bold text-gray-800 mb-1">
+                Daftar Menu Meal Plan Hari Ini
+            </h2>
+            <p class="text-sm text-gray-500 mb-4">
+                Contoh pilihan makanan untuk tiap jenis pada tabel porsi
+            </p>
+
+            @if($rekomendasi['portions']->isNotEmpty())
+            <div class="space-y-3 text-sm">
+                @foreach($rekomendasi['portions'] as $portion)
+                <div>
+                    <p class="font-semibold text-gray-700">{{ $portion->nama_jenis }}</p>
+                    <p class="text-gray-600">
+                        {{ implode(', ', $rekomendasi['menu_contoh'][$portion->id] ?? []) ?: '-' }}
+                    </p>
+                </div>
+                @endforeach
+            </div>
+            @else
+            <p class="text-sm text-gray-500">
+                Daftar menu akan muncul setelah tabel pembagian porsi diisi oleh admin gizi.
+            </p>
+            @endif
+        </div>
+
+    </div>
+
+@else
+
+    <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 text-sm text-yellow-800">
+        @if(($rekomendasi['status'] ?? null) === 'kategori_tidak_ditemukan')
+            Kategori diet belum dapat ditentukan dari data klinis Anda.
+            Silakan hubungi admin gizi.
+        @else
+            Lengkapi data klinis Anda (tekanan darah sistolik, glukosa darah, dan kolesterol)
+            melalui menu <strong>Update/Tambah Profil</strong> agar sistem dapat menentukan
+            kategori diet dan rekomendasi untuk Anda.
+        @endif
+    </div>
+
+@endif
+
     {{-- CONTAINER GRAFIK MAKRO --}}
     <div class="bg-white p-6 rounded-xl shadow border relative">
 

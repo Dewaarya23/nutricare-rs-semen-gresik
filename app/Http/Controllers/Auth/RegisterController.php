@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Disease;
 use App\Models\DietLog;
 use App\Models\NutritionTarget;
+use App\Services\DecisionTreeService;
+use App\Services\RuleBasedService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -30,6 +32,9 @@ public function store(Request $request)
         'jenis_kelamin'         => 'required|in:L,P',
         'berat_badan'           => 'required|numeric|min:1',
         'tinggi_badan'          => 'required|numeric|min:1',
+        'tekanan_darah_sistolik'=> 'required|numeric|min:1',
+        'glukosa_darah'         => 'required|numeric|min:1',
+        'kolesterol'            => 'required|numeric|min:1',
         'defisit'               => 'required|in:Menurunkan,Stabil,Menaikkan',
         'activity_factor'       => 'required|numeric',
         'ada_riwayat'           => 'required|in:ya,tidak',
@@ -47,15 +52,14 @@ public function store(Request $request)
         'jenis_kelamin'  => $request->jenis_kelamin,
         'berat_badan'    => $request->berat_badan,
         'tinggi_badan'   => $request->tinggi_badan,
+        'tekanan_darah_sistolik' => $request->tekanan_darah_sistolik,
+        'glukosa_darah'  => $request->glukosa_darah,
+        'kolesterol'     => $request->kolesterol,
         'ada_riwayat'    => $request->ada_riwayat,
         'defisit'        => $request->defisit,
         'activity_factor'=> $request->activity_factor,
         'role'           => 'user',
     ]);
-
-    /* ================================
-       HITUNG TARGET GIZI OTOMATIS
-    ================================= */
 
     $usia = \Carbon\Carbon::parse($request->tanggal_lahir)->age;
 
@@ -113,17 +117,34 @@ $targetLemak   = ($targetKkal * 0.25) / 9;
         'target_lemak'   => $targetLemak,
     ]);
 
+    $kategoriDiet = (new DecisionTreeService())->classify(
+        glukosaDarah: $request->glukosa_darah,
+        tekananDarahSistolik: $request->tekanan_darah_sistolik,
+        kolesterol: $request->kolesterol,
+        usia: $usia
+    );
+
+    $mealPlanId = null;
+
+    if ($kategoriDiet) {
+        $rekomendasi = (new RuleBasedService())->recommend(
+            $kategoriDiet,
+            $request->defisit,
+            $targetKkal
+        );
+
+        $mealPlanId = $rekomendasi['meal_plan']?->id;
+    }
+
     DietLog::create([
         'user_id' => $user->id,
         'tujuan_diet' => $request->defisit,
+        'kategori_diet' => $kategoriDiet,
         'activity_factor' => $request->activity_factor,
         'target_kkal' => $targetKkal,
+        'meal_plan_id' => $mealPlanId,
         'tanggal_mulai' => now(),
     ]);
-
-    /* ================================
-       SYNC RIWAYAT PENYAKIT
-    ================================= */
 
     if ($request->ada_riwayat === 'ya' && $request->filled('riwayat_penyakit')) {
         $user->diseases()->sync($request->riwayat_penyakit);

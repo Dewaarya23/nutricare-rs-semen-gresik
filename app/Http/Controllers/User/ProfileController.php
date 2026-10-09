@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\NutritionTarget;
 use Illuminate\Http\Request;
 use App\Models\DietLog;
+use App\Services\DecisionTreeService;
+use App\Services\RuleBasedService;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
@@ -26,6 +28,9 @@ class ProfileController extends Controller
             'jenis_kelamin' => 'required',
             'berat_badan'   => 'required|numeric',
             'tinggi_badan'  => 'required|numeric',
+            'tekanan_darah_sistolik' => 'required|numeric|min:1',
+            'glukosa_darah' => 'required|numeric|min:1',
+            'kolesterol'    => 'required|numeric|min:1',
             'defisit'       => 'required',
             'activity_factor'=> 'required|numeric'
         ]);
@@ -34,11 +39,13 @@ class ProfileController extends Controller
             'jenis_kelamin'  => $request->jenis_kelamin,
             'berat_badan'    => $request->berat_badan,
             'tinggi_badan'   => $request->tinggi_badan,
+            'tekanan_darah_sistolik' => $request->tekanan_darah_sistolik,
+            'glukosa_darah'  => $request->glukosa_darah,
+            'kolesterol'     => $request->kolesterol,
             'defisit'        => $request->defisit,
             'activity_factor'=> $request->activity_factor,
         ]);
 
-        // Tutup log aktif sebelumnya
     DietLog::where('user_id', $user->id)
     ->whereNull('tanggal_selesai')
     ->update([
@@ -77,12 +84,10 @@ if($user->defisit=='Menurunkan'){
     $targetKkal = $tee;
 }
 
-    // Hitung makronutrien (standar diet seimbang)
 $targetKarbo   = ($targetKkal * 0.60) / 4;
 $targetProtein = ($targetKkal * 0.15) / 4;
 $targetLemak   = ($targetKkal * 0.25) / 9;
 
-// Update atau buat nutrition target terbaru
 NutritionTarget::updateOrCreate(
     ['user_id' => $user->id],
     [
@@ -93,12 +98,32 @@ NutritionTarget::updateOrCreate(
     ]
 );
 
-    // Buat log baru
+    $kategoriDiet = (new DecisionTreeService())->classify(
+        glukosaDarah: $user->glukosa_darah,
+        tekananDarahSistolik: $user->tekanan_darah_sistolik,
+        kolesterol: $user->kolesterol,
+        usia: $usia
+    );
+
+    $mealPlanId = null;
+
+    if ($kategoriDiet) {
+        $rekomendasi = (new RuleBasedService())->recommend(
+            $kategoriDiet,
+            $user->defisit,
+            $targetKkal
+        );
+
+        $mealPlanId = $rekomendasi['meal_plan']?->id;
+    }
+
     DietLog::create([
     'user_id' => $user->id,
     'tujuan_diet' => $user->defisit,
+    'kategori_diet' => $kategoriDiet,
     'activity_factor' => $user->activity_factor,
     'target_kkal' => $targetKkal,
+    'meal_plan_id' => $mealPlanId,
     'tanggal_mulai' => now(),
 ]);
 

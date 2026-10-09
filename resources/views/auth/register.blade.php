@@ -94,6 +94,25 @@
                         class="w-full border rounded px-3 py-2" required>
                 </div>
 
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                    <label>Tekanan Darah Sistolik (mmHg)</label>
+                    <input type="number" name="tekanan_darah_sistolik" value="{{ old('tekanan_darah_sistolik') }}"
+                        class="w-full border rounded px-3 py-2" required>
+                </div>
+                <div>
+                    <label>Glukosa Darah (mg/dL)</label>
+                    <input type="number" name="glukosa_darah" value="{{ old('glukosa_darah') }}"
+                         class="w-full border rounded px-3 py-2" required>
+                </div>
+                </div>
+
+                <div>
+                    <label>Kolesterol (mg/dL)</label>
+                    <input type="number" name="kolesterol" value="{{ old('kolesterol') }}"
+                        class="w-full border rounded px-3 py-2" required>
+                </div>
+
                 <div>
                     <label>Tujuan Diet</label>
                     <select name="defisit" class="w-full border rounded px-3 py-2" required>
